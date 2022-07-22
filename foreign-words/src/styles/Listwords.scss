@@ -1,0 +1,35 @@
+table {
+    margin: auto;
+    padding: 10px 0px;
+    border-collapse: separate;
+}
+
+th, td {
+    border: solid 2px pink;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+
+    button:hover {
+        border: 2px solid #360C4D;
+    }
+}
+
+.bin {
+    background-image: url(../images/recycle-bin.png);
+}
+
+.edit {
+    background-image: url(../images/pencil.png);
+}
+
+.bin, .edit {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+}

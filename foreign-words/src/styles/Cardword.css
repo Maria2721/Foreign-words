@@ -1,0 +1,12 @@
+.card-train {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: 600px;
+  height: 400px;
+  margin: 5vh auto;
+  border: solid 4px rgb(247, 35, 99);
+  padding: 10px;
+  border-radius: 25px;
+}/*# sourceMappingURL=Cardword.css.map */

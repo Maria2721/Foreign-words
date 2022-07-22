@@ -1,0 +1,35 @@
+header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  width: 100%;
+  padding: 10px 10vw;
+  box-sizing: border-box;
+  background: #f9b5bb;
+}
+header .logo {
+  width: 50px;
+}
+header nav {
+  margin-left: 50vw;
+}
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  align-content: end;
+}
+header nav ul li {
+  list-style-type: none;
+  margin: 0 5px;
+  color: #360C4D;
+}
+header nav ul li .text-link {
+  text-decoration: none;
+}
+header .toggle-menu {
+  width: 30px;
+  height: 30px;
+}/*# sourceMappingURL=Header.css.map */
