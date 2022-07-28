@@ -60,7 +60,6 @@ function App() {
             </li>
           </ul>
         </nav>
-        {/* <button class="toggle-menu">☰</button> */}
       </header>
       <Routes>
         <Route path="/" element={<Main />} />

@@ -16,7 +16,7 @@ function Listwords() {
                         <th>Транскрипция</th>
                         <th>Перевод</th>
                         <th>Тема</th>
-                        <th><button>Добавить слово</button></th>
+                        <th><button className='btn-add'></button></th>
                     </tr>
                 </thead>
                 <tbody>

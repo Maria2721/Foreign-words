@@ -1,16 +1,20 @@
+@import './variables.css';
+
 .footer {
     margin-top: 1rem;
     padding: 1rem;
-    background: #f9b5bb;
+    background: var(--theme-light-color);
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;
+    font-size: var(--main-font-size);
+    font-family: var(--main-font);
+    color: var(--theme-dark-color);
 
     .link {
         text-decoration: none;
-        color: #360C4D;
         font-weight: bolder;
     }
 }

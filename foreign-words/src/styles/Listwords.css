@@ -1,11 +1,29 @@
+@import './variables.css';
 table {
   margin: auto;
-  padding: 10px 0px;
+  margin: 5vh auto;
   border-collapse: separate;
+  border-spacing: 5px 10px;
+  border: solid 3px var(--theme-dark-color);
+  font-size: var(--main-font-size);
+  font-family: var(--main-font);
 }
 
 th, td {
-  border: solid 2px pink;
+  border: solid 2px var(--theme-dark-color);
+  background: var(--card-color);
+}
+
+th {
+  padding: 5px 10px;
+}
+
+td {
+  padding: 0px 10px;
+}
+
+th, .number {
+  text-align: center;
 }
 
 .buttons {
@@ -13,22 +31,47 @@ th, td {
   justify-content: space-around;
 }
 .buttons button:hover {
-  border: 2px solid #360C4D;
+  border: 2px solid var(--theme-dark-color);
+  border-radius: 50%;
 }
 
-.bin {
+.btn-bin {
   background-image: url(../images/recycle-bin.png);
 }
 
-.edit {
+.btn-edit {
   background-image: url(../images/pencil.png);
 }
 
-.bin, .edit {
+.btn-save {
+  background-image: url(../images/user-interface.png);
+}
+
+.btn-cancel {
+  background-image: url(../images/close.png);
+}
+
+.btn-bin, .btn-edit, .btn-save, .btn-cancel {
   background-repeat: no-repeat;
   background-size: contain;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background-color: transparent;
   border: none;
+  margin: 5px;
+}
+
+.btn-add {
+  background-image: url(../images/row.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+}
+.btn-add:hover {
+  border: 2px solid var(--theme-dark-color);
+  border-radius: 5px;
 }/*# sourceMappingURL=Listwords.css.map */

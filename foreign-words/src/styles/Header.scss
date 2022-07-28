@@ -1,3 +1,5 @@
+@import './variables.css';
+
 header {
     display: flex;
     flex-direction: row;
@@ -8,7 +10,9 @@ header {
     width: 100%;
     padding: 10px 10vw;
     box-sizing: border-box;
-    background: #f9b5bb;
+    background: var(--theme-light-color);
+    font-size: var(--highlight-font-size);
+    font-family: var(--main-font);
 
     .logo {
         width: 50px;
@@ -23,16 +27,11 @@ header {
             li {
                 list-style-type: none;
                 margin: 0 5px;
-                color: #360C4D;
+                color: var(--theme-dark-color);
                 .text-link {
                     text-decoration: none;
                 }
             }
         }
-    }
-
-    .toggle-menu{
-        width: 30px;
-        height: 30px;
     }
 }
