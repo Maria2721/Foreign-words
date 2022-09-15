@@ -18,6 +18,22 @@
   align-items: center;
   align-self: center;
 }
+.card-train .card-train-word-high {
+  font-size: var(--highlight-font-size);
+  font-weight: bold;
+}
+.card-train .card-train-transcr-word button {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: var(--main-button-color);
+  border: none;
+  color: var(--theme-dark-color);
+  font-size: var(--main-font-size);
+  font-weight: bold;
+}
+.card-train .card-train-transcr-word button:hover {
+  border: 2px solid var(--theme-dark-color);
+}
 .card-train .card-train-button button {
   padding: 10px;
   border-radius: 10px;
