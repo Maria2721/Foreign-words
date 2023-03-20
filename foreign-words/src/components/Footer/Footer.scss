@@ -1,17 +1,16 @@
-@import './variables.css';
+@import "../../styles/vars";
 
 .footer {
     margin-top: 1rem;
     padding: 1rem;
-    background: var(--theme-light-color);
+    background: $theme_light;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: var(--main-font-size);
-    font-family: var(--main-font);
-    color: var(--theme-dark-color);
+    font-size: $main_fontSize;
+    color: $theme_dark;
 
     .link {
         text-decoration: none;

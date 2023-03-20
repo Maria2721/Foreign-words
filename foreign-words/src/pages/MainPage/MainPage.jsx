@@ -1,10 +1,9 @@
 import React from 'react';
+import "./MainPage.scss";
 
-import "../styles/Main.css";
+import main_picture from '../../assets/imgs/studying.png';
 
-import main_picture from '../images/studying.png';
-
-function Main() {
+function MainPage() {
     return (
         <div className='main'>
             <div className='main-text'>
@@ -20,4 +19,4 @@ function Main() {
     )
 }
 
-export default Main;
+export default MainPage;

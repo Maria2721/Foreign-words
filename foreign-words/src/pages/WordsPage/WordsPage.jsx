@@ -1,11 +1,10 @@
 import React from 'react';
+import "./WordsPage.scss";
 
-import Array from './arraywords.js';
-import Oneword from './Oneword.jsx';
+import Array from '../../js/arraywords.js';
+import Oneword from '../../components/Oneword/Oneword.jsx';
 
-import "../styles/Listwords.css";
-
-function Listwords() {
+function WordsPage() {
     return (
         <React.Fragment>
             <table>
@@ -36,4 +35,4 @@ function Listwords() {
     )
 }
 
-export default Listwords;
+export default WordsPage;

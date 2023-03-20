@@ -1,11 +1,10 @@
-@import './variables.css';
+@import "../../styles/vars";
 
 .main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: 0px 10vw;
-    font-family: var(--main-font);
-    color: var(--theme-dark-color);
+    color: $theme_dark;
 }
 
 .main-text {
@@ -14,12 +13,13 @@
     justify-content: center;
     align-content: center;
 
-    p, div {
-        font-size: var(--main-font-size);
+    p,
+    div {
+        font-size: $main_fontSize;
     }
 }
 
-.start-train{
+.start-train {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -29,14 +29,14 @@
     button {
         padding: 10px;
         border-radius: 10px;
-        background-color: var(--main-button-color);
+        background-color: $buttonColor;
         border: 2px solid white;
-        color: var(--theme-dark-color);
-        font-size: var(--main-font-size);
+        color: $theme_dark;
+        font-size: $main_fontSize;
         font-weight: bold;
     }
 
     button:hover {
-        border: 2px solid var(--theme-dark-color);
+        border: 2px solid $theme_dark;
     }
 }

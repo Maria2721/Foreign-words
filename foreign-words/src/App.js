@@ -1,73 +1,24 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.scss";
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
-
-import Main from "./components/Main.jsx";
-import Listwords from "./components/Listwords.jsx";
-import Cardword from "./components/Cardword.jsx";
-import Footer from "./components/Footer.jsx";
-
-import "./styles/Header.css";
-
-import logo from "./images/puzzle.png";
-
-import "./App.css";
+import Header from "./components/Header/Header.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+import MainPage from "./pages/MainPage/MainPage.jsx";
+import WordsPage from "./pages/WordsPage/WordsPage.jsx";
+import CardsPage from "./pages/CardsPage/CardsPage.jsx";
 
 function App() {
   return (
-    <Router>
-      <header>
-        <img src={logo} className="logo" alt="logo" />
-        <nav>
-          <ul>
-            <li>
-              <NavLink
-                to="/"
-                className={"text-link"}
-                style={({ isActive }) => ({
-                  fontWeight: isActive ? "bolder" : "normal",
-                })}
-              >
-                Главная
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/words"
-                className={"text-link"}
-                style={({ isActive }) => ({
-                  fontWeight: isActive ? "bolder" : "normal",
-                })}
-              >
-                Слова
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/cards"
-                className={"text-link"}
-                style={({ isActive }) => ({
-                  fontWeight: isActive ? "bolder" : "normal",
-                })}
-              >
-                Карточки
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
+    <div className="App">
+      <Header />
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/words" element={<Listwords />} />
-        <Route path="/cards" element={<Cardword />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/words" element={<WordsPage />} />
+        <Route path="/cards" element={<CardsPage />} />
       </Routes>
       <Footer />
-    </Router>
+    </div>
   );
 }
 

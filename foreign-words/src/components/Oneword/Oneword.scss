@@ -1,0 +1,44 @@
+@import "../../styles/vars";
+
+.number {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+
+    button:hover {
+        border: 2px solid $theme_dark;
+        border-radius: 50%;
+    }
+}
+
+.btn-bin {
+    background-image: url(../../assets/imgs/recycle-bin.png);
+}
+
+.btn-edit {
+    background-image: url(../../assets/imgs/pencil.png);
+}
+
+.btn-save {
+    background-image: url(../../assets/imgs/user-interface.png);
+}
+
+.btn-cancel {
+    background-image: url(../../assets/imgs/close.png);
+}
+
+.btn-bin,
+.btn-edit,
+.btn-save,
+.btn-cancel {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    margin: 5px;
+}

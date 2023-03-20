@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import "vars";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $generalFont;
+    background-color: inherit;
+    font-weight: 500;
+}
+
+main {
+    flex: 1 0 auto;
+}

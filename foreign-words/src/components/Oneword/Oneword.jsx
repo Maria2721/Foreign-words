@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import "../styles/Listwords.css";
+import "./Oneword.scss";
 
 function Oneword(props) {
     const [edit, setEdit] = useState(false);

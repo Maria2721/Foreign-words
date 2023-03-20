@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import "./CardsPage.scss";
 
-import Array from './arraywords';
+import Array from '../../js/arraywords';
 
-import "../styles/Cardword.css";
-
-function Cardword() {
+function CardsPage() {
     const [word, setWord] = useState(Array[0]);
     const [transcr, setTranscr] = useState(false);
 
@@ -13,7 +12,7 @@ function Cardword() {
     }
 
     const arrayRandElement = (arr) => {
-        var rand = Math.floor(Math.random() * arr.length);
+        let rand = Math.floor(Math.random() * arr.length);
         return arr[rand];
     }
 
@@ -38,4 +37,4 @@ function Cardword() {
     )
 }
 
-export default Cardword;
+export default CardsPage;
