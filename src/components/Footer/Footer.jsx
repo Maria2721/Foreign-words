@@ -3,9 +3,9 @@ import './Footer.scss';
 
 function Footer() {
     return (
-        <div className='footer'>
-            &copy; {new Date().getFullYear()} Copyright by <a href="https://github.com/Maria2721?tab=repositories" className='link'> Maria</a>
-        </div>
+        <footer className="footer container">
+            &copy; {new Date().getFullYear()} Copyright by&nbsp;<a href="https://github.com/Maria2721?tab=repositories" className="footer__link">Maria</a>
+        </footer>
     )
 }
 

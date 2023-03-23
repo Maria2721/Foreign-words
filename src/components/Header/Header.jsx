@@ -1,52 +1,41 @@
-import React from 'react';
+import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
-import logo from "../../assets/imgs/puzzle.png";
+import logo from "../../assets/imgs/foreign-language.png";
 
 function Header() {
     return (
-        <header>
-            <img src={logo} alt="logo" className="logo" />
+        <header className="header container">
+            <img src={logo} alt="logo" className="header__logo" />
             <nav>
-                <ul>
-                    <li>
-                        <NavLink
-                            to="/"
-                            className={"text-link"}
-                            style={({ isActive }) => ({
-                                fontWeight: isActive ? "bolder" : "normal",
-                            })}
-                        >
-                            Главная
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/words"
-                            className={"text-link"}
-                            style={({ isActive }) => ({
-                                fontWeight: isActive ? "bolder" : "normal",
-                            })}
-                        >
-                            Слова
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/cards"
-                            className={"text-link"}
-                            style={({ isActive }) => ({
-                                fontWeight: isActive ? "bolder" : "normal",
-                            })}
-                        >
-                            Карточки
-                        </NavLink>
-                    </li>
-                </ul>
+                <NavLink
+                    to="/"
+                    style={({ isActive }) => ({
+                        fontWeight: isActive ? "bolder" : "normal",
+                    })}
+                >
+                    Главная
+                </NavLink>
+                <NavLink
+                    to="/words"
+                    style={({ isActive }) => ({
+                        fontWeight: isActive ? "bolder" : "normal",
+                    })}
+                >
+                    Слова
+                </NavLink>
+                <NavLink
+                    to="/cards"
+                    style={({ isActive }) => ({
+                        fontWeight: isActive ? "bolder" : "normal",
+                    })}
+                >
+                    Карточки
+                </NavLink>
             </nav>
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;

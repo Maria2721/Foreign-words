@@ -1,36 +1,25 @@
 @import "../../styles/vars";
 
-header {
+.header {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
-    top: 0;
-    width: 100%;
-    padding: 10px 10vw;
-    box-sizing: border-box;
     background: $theme_light;
-    font-size: $highlight_fontSize;
 
-    .logo {
+    .header__logo {
         width: 50px;
     }
 
     nav {
-        margin-left: 50vw;
-        ul {
-            display: flex;
-            flex-direction: row;
-            align-content: end;
-            li {
-                list-style-type: none;
-                margin: 0 5px;
-                color: $theme_dark;
-                .text-link {
-                    text-decoration: none;
-                }
-            }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        a {
+            font-size: $highlight_fontSize;
+            margin-left: 20px;
         }
     }
 }

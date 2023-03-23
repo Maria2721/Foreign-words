@@ -16,3 +16,34 @@ body {
 main {
     flex: 1 0 auto;
 }
+
+.container {
+    width: 100%;
+    padding: 10px 10vw;
+}
+
+a {
+    color: $theme_dark;
+    text-decoration: none;
+    &:focus-visible {
+        color: $accentColor;
+    }
+}
+
+@media (hover: hover) {
+    a:hover {
+        cursor: pointer;
+        color: $accentColor;
+        transition: color 0.1s ease;
+    }
+}
+
+@media (hover: none) {
+    a:hover {
+        color: $theme_dark;
+    }
+    a:active {
+        color: $accentColor;
+        outline: none;
+    }
+}
