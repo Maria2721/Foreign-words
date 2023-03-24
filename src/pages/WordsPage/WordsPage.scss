@@ -1,10 +1,9 @@
 @import "../../styles/vars";
 
 table {
-    margin: auto;
-    margin: 5vh auto;
     border-collapse: separate;
-    border-spacing: 5px 10px;
+    width: 100%;
+    border-spacing: 10px 15px;
     border: solid 3px $theme_dark;
     font-size: $main_fontSize;
 }

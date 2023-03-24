@@ -6,7 +6,7 @@ import Oneword from '../../components/Oneword/Oneword.jsx';
 
 function WordsPage() {
     return (
-        <React.Fragment>
+        <div className="words container">
             <table>
                 <thead>
                     <tr>
@@ -31,7 +31,7 @@ function WordsPage() {
                     ))}
                 </tbody>
             </table>
-        </React.Fragment>
+        </div>
     )
 }
 

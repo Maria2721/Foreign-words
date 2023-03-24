@@ -19,7 +19,8 @@ main {
 
 .container {
     width: 100%;
-    padding: 10px 10vw;
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
 
 a {
@@ -45,5 +46,12 @@ a {
     a:active {
         color: $accentColor;
         outline: none;
+    }
+}
+
+button {
+    font-family: $generalFont;
+    &:hover {
+        cursor: pointer;
     }
 }

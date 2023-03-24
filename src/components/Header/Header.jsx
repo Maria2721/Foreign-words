@@ -7,7 +7,9 @@ import logo from "../../assets/imgs/foreign-language.png";
 function Header() {
     return (
         <header className="header container">
-            <img src={logo} alt="logo" className="header__logo" />
+            <NavLink to="/">
+                <img src={logo} alt="logo" className="header__logo" />
+            </NavLink>
             <nav>
                 <NavLink
                     to="/"
