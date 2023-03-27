@@ -1,43 +1,51 @@
 @import "../../styles/vars";
 
-table {
-    border-collapse: separate;
-    width: 100%;
-    border-spacing: 10px 15px;
+.words {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.words__inner {
     border: solid 3px $theme_dark;
-    font-size: $main_fontSize;
+    padding: 10px 15px;
+    color: $theme_dark;
 }
 
-th,
-td {
-    border: solid 2px $theme_dark;
-    background: $cardColor;
+.words__parameters {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 4fr) 2fr;
+    align-items: center;
+    justify-items: stretch;
+
+    div {
+        height: 100%;
+        border: solid 2px $theme_dark;
+        background: $cardColor;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 0px 5px;
+    }
+
+    div:not(:last-child) {
+        margin-right: 10px;
+    }
 }
 
-th {
-    padding: 5px 10px;
-}
-
-td {
-    padding: 0px 10px;
-}
-
-th {
-    text-align: center;
-}
-
-.btn-add {
-    background-image: url(../../assets/imgs/row.png);
+.words__btn_add {
+    width: 100%;
+    height: 30px;
+    background-image: url(../../assets/imgs/add-row.svg);
     background-repeat: no-repeat;
     background-size: contain;
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    border: none;
-    padding: 5px;
+    background-position: center;
+    background-color: $cardColor;
+    border: solid 2px $theme_dark;
 
     &:hover {
-        border: 2px solid $theme_dark;
-        border-radius: 5px;
+        background-color: #d39df2;
     }
 }

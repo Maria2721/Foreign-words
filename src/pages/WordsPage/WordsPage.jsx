@@ -1,38 +1,35 @@
-import React from 'react';
+import React from "react";
 import "./WordsPage.scss";
 
-import Array from '../../js/arraywords.js';
-import Oneword from '../../components/Oneword/Oneword.jsx';
+import Array from "../../js/arraywords.js";
+import Oneword from "../../components/Oneword/Oneword.jsx";
 
 function WordsPage() {
     return (
         <div className="words container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>№</th>
-                        <th>Значение</th>
-                        <th>Транскрипция</th>
-                        <th>Перевод</th>
-                        <th>Тема</th>
-                        <th><button className='btn-add'></button></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Array.map((el, index) => (
-                        <Oneword
-                            num={index + 1}
-                            key={el.id}
-                            meaning={el.english}
-                            transcription={el.transcription}
-                            translation={el.russian}
-                            subject={el.tags}
-                        ></Oneword>
-                    ))}
-                </tbody>
-            </table>
+            <div className="words__inner">
+                <div className="words__parameters">
+                    <div>№</div>
+                    <div>Значение</div>
+                    <div>Транскрипция</div>
+                    <div>Перевод</div>
+                    <div>Тема</div>
+                    <button className="words__btn_add"></button>
+                </div>
+                {Array.map((el, index) => (
+                    <Oneword
+                        key={el.id}
+                        num={index + 1}
+                        meaning={el.english}
+                        transcription={el.transcription}
+                        translation={el.russian}
+                        subject={el.tags}
+                        className="words__parameters"
+                    ></Oneword>
+                ))}
+            </div>
         </div>
-    )
+    );
 }
 
 export default WordsPage;
