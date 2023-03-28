@@ -9,6 +9,7 @@
     border: solid 3px $theme_dark;
     padding: 10px 15px;
     color: $theme_dark;
+    font-size: $main_fontSize;
 }
 
 .words__parameters {
@@ -45,7 +46,8 @@
     background-color: $cardColor;
     border: solid 2px $theme_dark;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
         background-color: #d39df2;
     }
 }

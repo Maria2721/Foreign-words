@@ -14,6 +14,22 @@
     }
 }
 
+.oneword__input {
+    width: 100%;
+    padding: 3px 5px;
+    background-color: #fff;
+    border: solid 1px $theme_dark;
+    border-radius: 0px;
+
+    color: $theme_dark;
+    font-size: $main_fontSize;
+    font-weight: 500;
+
+    &:focus-visible {
+        border: solid 2px $theme_dark;
+    }
+}
+
 .oneword__btn_remove {
     background-image: url(../../assets/imgs/remove_bin.svg);
 }
@@ -42,7 +58,8 @@
     border: none;
     border-radius: 50%;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
         background-color: #d39df2;
     }
 }

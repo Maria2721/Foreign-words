@@ -9,7 +9,7 @@
 
 body {
     font-family: $generalFont;
-    background-color: inherit;
+    background-color: #fff;
     font-weight: 500;
 }
 
@@ -53,5 +53,35 @@ button {
     font-family: $generalFont;
     &:hover {
         cursor: pointer;
+    }
+}
+
+input {
+    font-family: $generalFont;
+    &:hover {
+        cursor: text;
+    }
+}
+
+a,
+button,
+input[type="text"],
+div {
+    -webkit-tap-highlight-color: transparent;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+@supports (padding: max(0px)) {
+    body,
+    header,
+    footer {
+        padding-left: min(0vmin, env(safe-area-inset-left));
+        padding-right: min(0vmin, env(safe-area-inset-right));
     }
 }
