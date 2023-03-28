@@ -1,10 +1,9 @@
 import React from "react";
 import "./WordsPage.scss";
 
-import Array from "../../js/arraywords.js";
 import Oneword from "../../components/Oneword/Oneword.jsx";
 
-function WordsPage() {
+function WordsPage({ array }) {
     return (
         <div className="words container">
             <div className="words__inner">
@@ -16,7 +15,7 @@ function WordsPage() {
                     <div>Тема</div>
                     <button className="words__btn_add"></button>
                 </div>
-                {Array.map((el, index) => (
+                {array.map((el, index) => (
                     <Oneword
                         key={el.id}
                         num={index + 1}
