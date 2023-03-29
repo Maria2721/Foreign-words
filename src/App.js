@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import MainPage from "./pages/MainPage/MainPage.jsx";
 import WordsPage from "./pages/WordsPage/WordsPage.jsx";
 import CardsPage from "./pages/CardsPage/CardsPage.jsx";
+import NoMatchPage from "./pages/NoMatchPage/NoMatchPage.jsx";
 
 import Array from "./js/arraywords";
 
@@ -23,6 +24,7 @@ function App() {
           path="/cards"
           element={<CardsPage array={Array} index={Number(index)} />}
         />
+        <Route path="*" element={<NoMatchPage />} />
       </Routes>
       <Footer />
     </div>

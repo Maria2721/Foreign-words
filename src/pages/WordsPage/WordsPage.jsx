@@ -5,7 +5,7 @@ import Oneword from "../../components/Oneword/Oneword.jsx";
 
 function WordsPage({ array }) {
     return (
-        <div className="words container">
+        <div className="words container content">
             <div className="words__inner">
                 <div className="words__parameters">
                     <div>№</div>

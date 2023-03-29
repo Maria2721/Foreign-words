@@ -15,7 +15,7 @@ function MainPage() {
     }, [path, navigate]);
 
     return (
-        <div className="main container">
+        <div className="main container content">
             <div className="main__description">
                 <h1 className="main__title">Foreign words</h1>
                 <div className="main__text">

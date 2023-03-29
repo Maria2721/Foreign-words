@@ -71,7 +71,7 @@ function CardsPage({
     }, [curIndex]);
 
     return (
-        <div className="cards container">
+        <div className="cards container content">
             <div className="cards__flip">
                 <button className="cards__flip_btn" onClick={handleBack}>
                     <Back className="cards__flip_icon" />
