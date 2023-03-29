@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import * as cn from "classnames";
 import "./App.scss";
 
 import Header from "./components/Header/Header.jsx";
@@ -13,6 +14,7 @@ import Array from "./js/arraywords";
 
 function App() {
   let index = localStorage.getItem("cardIndex") || 0;
+  // отслеживать location => убирать Header и Footer для страницы NoMatchPage
 
   return (
     <div className="App">
@@ -21,7 +23,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/words" element={<WordsPage array={Array} />} />
         <Route
-          path="/cards"
+          path="/game"
           element={<CardsPage array={Array} index={Number(index)} />}
         />
         <Route path="*" element={<NoMatchPage />} />

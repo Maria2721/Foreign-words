@@ -33,7 +33,7 @@ function MainPage() {
                 </div>
                 <div className="main__buttons">
                     <button className="main__buttons_study" onClick={() => setPath("/words")}>Изучать слова</button>
-                    <button className="main__buttons_train" onClick={() => setPath("/cards")}>Начать тренировку</button>
+                    <button className="main__buttons_train" onClick={() => setPath("/game")}>Начать тренировку</button>
                 </div>
             </div>
             <div className="main__img">

@@ -28,12 +28,12 @@ function Header() {
                     Слова
                 </NavLink>
                 <NavLink
-                    to="/cards"
+                    to="/game"
                     style={({ isActive }) => ({
                         fontWeight: isActive ? "bolder" : "normal",
                     })}
                 >
-                    Карточки
+                    Тренажер
                 </NavLink>
             </nav>
         </header>

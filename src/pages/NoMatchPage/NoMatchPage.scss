@@ -1,0 +1,48 @@
+@import "../../styles/vars";
+
+.noMatch {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../../assets/imgs/no_match.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.noMatch__inner {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10vh;
+    padding-left: 35vw;
+}
+
+.noMatch__btnWrapper {
+    margin-left: 40px;
+}
+.noMatch__btn {
+    padding: 10px 20px;
+    background-color: #37345e;
+    border: 4px solid #100921;
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: $highlight_fontSize;
+
+    &:hover,
+    &:focus-visible {
+        background-color: #100921;
+    }
+}
+
+.noMatch__imgWrapper {
+    height: 100px;
+}
+.noMatch__img {
+    height: 100%;
+}
