@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import * as cn from "classnames";
 import "./App.scss";
 
@@ -12,23 +12,30 @@ import NoMatchPage from "./pages/NoMatchPage/NoMatchPage.jsx";
 
 import Array from "./js/arraywords";
 
+const PageLayout = () => (
+  <>
+    <Header />
+    <Outlet />
+    <Footer />
+  </>
+);
+
 function App() {
   let index = localStorage.getItem("cardIndex") || 0;
-  // отслеживать location => убирать Header и Footer для страницы NoMatchPage
 
   return (
     <div className="App">
-      <Header />
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/words" element={<WordsPage array={Array} />} />
-        <Route
-          path="/game"
-          element={<CardsPage array={Array} index={Number(index)} />}
-        />
+        <Route element={<PageLayout />}>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/words" element={<WordsPage array={Array} />} />
+          <Route
+            path="/game"
+            element={<CardsPage array={Array} index={Number(index)} />}
+          />
+        </Route>
         <Route path="*" element={<NoMatchPage />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

@@ -45,7 +45,8 @@
         font-weight: 700;
     }
     button:hover,
-    button:focus-visible {
+    button:focus-visible,
+    button:focus {
         border: 2px solid $theme_dark;
     }
 }

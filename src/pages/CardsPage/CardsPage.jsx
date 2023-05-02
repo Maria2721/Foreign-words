@@ -6,20 +6,29 @@ import { ReactComponent as Back } from "../../assets/imgs/back.svg";
 import { ReactComponent as Forward } from "../../assets/imgs/forward.svg";
 
 function CardsPage({
-    array = [{
-        id: "11346",
-        english: "street",
-        transcription: "[ stri:t ]",
-        russian: "улица",
-        tags: "город",
-    }], index = 0 }
-) {
+    array = [
+        {
+            id: "11346",
+            english: "street",
+            transcription: "[ stri:t ]",
+            russian: "улица",
+            tags: "город",
+        },
+    ],
+    index = 0,
+}) {
     const [curIndex, setCurIndex] = useState(index);
     const [word, setWord] = useState(array[index]);
     const [translation, setTranslation] = useState(false);
+    const [studied, setStudied] = useState(0);
+    const [arrayStudied, setArrayStudied] = useState([]);
 
     const handleChange = () => {
         setTranslation(true);
+        if (arrayStudied.indexOf(word.id) === -1) {
+            setStudied((num) => num + 1);
+            setArrayStudied([...arrayStudied, word.id]);
+        }
     };
 
     const handleBack = () => {
@@ -59,7 +68,7 @@ function CardsPage({
         while (word.id === randomWord.id) {
             randomWord = randomArrayElement(array);
         }
-        let indexOfRandomWord = array.findIndex(x => x.id === randomWord.id);
+        let indexOfRandomWord = array.findIndex((x) => x.id === randomWord.id);
         setCurIndex(indexOfRandomWord);
     };
 
@@ -72,6 +81,9 @@ function CardsPage({
 
     return (
         <div className="cards container content">
+            <div className="cards__studied">
+                Количество слов, изученных за тренировку: {studied}
+            </div>
             <div className="cards__flip">
                 <button className="cards__flip_btn" onClick={handleBack}>
                     <Back className="cards__flip_icon" />
@@ -83,7 +95,8 @@ function CardsPage({
                     transcription={word.transcription}
                     russian={word.russian}
                     translation={translation}
-                    handleChange={handleChange} />
+                    handleChange={handleChange}
+                />
                 <button className="cards__flip_btn" onClick={handleForward}>
                     <Forward className="cards__flip_icon" />
                 </button>
