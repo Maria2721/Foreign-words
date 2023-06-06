@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as cn from "classnames";
 import "./Oneword.scss";
 
 function Oneword(props) {
     const [edit, setEdit] = useState(false);
     const [word, setWord] = useState({
-        mean: `${props.meaning}`,
-        transcr: `${props.transcription}`,
-        transl: `${props.translation}`,
-        sub: `${props.subject}`,
+        mean: {
+            value: props.meaning,
+            isDirty: false,
+            error: "",
+        },
+        transcr: {
+            value: props.transcription,
+            isDirty: false,
+            error: "",
+        },
+        transl: {
+            value: props.translation,
+            isDirty: false,
+            error: "",
+        },
+        sub: {
+            value: props.subject,
+            isDirty: false,
+            error: "",
+        },
     });
     const [oldWord, setOldWord] = useState({
         mean: "",
@@ -22,90 +38,307 @@ function Oneword(props) {
         const value = e.target.value;
         setWord({
             ...word,
-            [name]: value,
+            [name]: {
+                ...word[name],
+                value: value,
+            },
         });
     };
 
-    const handleEdit = (e) => {
+    const handleEdit = () => {
         setEdit(true);
         setOldWord({
-            mean: word.mean,
-            transcr: word.transcr,
-            transl: word.transl,
-            sub: word.sub,
+            mean: word.mean.value,
+            transcr: word.transcr.value,
+            transl: word.transl.value,
+            sub: word.sub.value,
         });
     };
 
-    // more functional in the future => submit newword in bd
-    const handleSave = () => {
-        setEdit(false);
-        setOldWord({
-            mean: "",
-            transcr: "",
-            transl: "",
-            sub: "",
-        });
+    const handleRemove = () => {
+        console.log("Remove word!!!");
     };
 
     const handleCancelEdit = () => {
-        setWord({
-            mean: oldWord.mean,
-            transcr: oldWord.transcr,
-            transl: oldWord.transl,
-            sub: oldWord.sub,
-        });
+        for (let key in oldWord) {
+            const name = key;
+            const value = oldWord[key];
+            setWord((word) => ({
+                ...word,
+                [name]: {
+                    ...word[name],
+                    value: value,
+                    isDirty: false,
+                },
+            }));
+        }
         setEdit(false);
     };
+
+    // после нажатия кнопки сохранить изменения происходит отправка в бд !!!
+    const handleSave = () => {
+        let curValid = validateWord();
+        console.log(`curValid after validateWord is ${curValid}`);
+
+        if (curValid === true) {
+            setEdit(false);
+            setOldWord({
+                mean: "",
+                transcr: "",
+                transl: "",
+                sub: "",
+            });
+            console.log(word);
+        } else {
+            console.log("Some inputs not correct!!!");
+        }
+    };
+
+    // валидация всех полей после нажатия кнопки сохранить
+    const validateWord = () => {
+        let valid = true;
+        for (let key in oldWord) {
+            const name = key;
+            const value = word[name].value.trim();
+            let curError = validationRules(name, value);
+
+            setWord((word) => ({
+                ...word,
+                [name]: {
+                    ...word[name],
+                    error: curError !== "" ? curError : "",
+                    isDirty: curError !== "" ? true : false,
+                },
+            }));
+
+            if (curError !== "") {
+                valid = false;
+            }
+        }
+        return valid;
+    };
+
+    // правила, по которым валидируются поля
+    const validationRules = (name, value) => {
+        const regEn = /^[A-Z\s'-]+$/i;
+        const regTr = /^[^А-ЯЁ]+$/i;
+        const regRus = /^[А-ЯЁ\s'-]+$/i;
+        let error = "";
+
+        switch (name) {
+            case "mean":
+                if (value.length === 0) {
+                    error = "Необходимо заполнить";
+                    break;
+                }
+                if (!regEn.test(value)) {
+                    error = "Недопустимые символы";
+                    break;
+                }
+                if (value.length > 45) {
+                    error = "Максимум 45 символов";
+                    break;
+                }
+                break;
+            case "transcr":
+                if (value.length === 0) {
+                    error = "Необходимо заполнить";
+                    break;
+                }
+                if (!regTr.test(value)) {
+                    error = "Недопустимые символы";
+                    break;
+                }
+                if (value.length > 45) {
+                    error = "Максимум 45 символов";
+                    break;
+                }
+                break;
+            case "transl":
+                if (value.length === 0) {
+                    error = "Необходимо заполнить";
+                    break;
+                }
+                if (!regRus.test(value)) {
+                    error = "Недопустимые символы";
+                    break;
+                }
+                if (value.length > 35) {
+                    error = "Максимум 35 символов";
+                    break;
+                }
+                break;
+            case "sub":
+                if (value.length === 0) {
+                    error = "Необходимо заполнить";
+                    break;
+                }
+                if (!regRus.test(value)) {
+                    error = "Недопустимые символы";
+                    break;
+                }
+                if (value.length > 35) {
+                    error = "Максимум 35 символов";
+                    break;
+                }
+                break;
+            default:
+                error = "";
+        }
+        return error;
+    };
+
+    // при потере фокуса поля ввода происходит его валидация
+    const blurHandler = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        let curError = validationRules(name, value);
+
+        setWord((word) => ({
+            ...word,
+            [name]: {
+                ...word[name],
+                error: curError ? curError : "",
+                isDirty: curError ? true : false,
+            },
+        }));
+    };
+
+    // при попадании поля ввода в фокус снимаются все ошибки с этого поля
+    const focusHandler = (e) => {
+        const name = e.target.name;
+        setWord((word) => ({
+            ...word,
+            [name]: {
+                ...word[name],
+                error: "",
+                isDirty: false,
+            },
+        }));
+    };
+
+    /* useEffect(() => {
+        console.log(word);
+      }, [word]); */
+
+    /* useEffect(() => {
+          // condition goes here
+        console.log(edit);
+      }, [edit]); */
 
     return (
         <div className={cn(props.className, "oneword")} key={props.id}>
             <div>{props.num}</div>
             <div className="oneword__text">
-                {edit ? <input
-                    type="text"
-                    value={word.mean}
-                    name="mean"
-                    onChange={handleChange}
-                    className="oneword__input" />
-                    : word.mean}
+                {edit ? (
+                    <>
+                        {word.mean.error && word.mean.isDirty && (
+                            <div className="oneword__text_error">{word.mean.error}</div>
+                        )}
+                        <input
+                            type="text"
+                            value={word.mean.value}
+                            name="mean"
+                            className={cn(
+                                "oneword__input",
+                                word.mean.isDirty && "oneword__input_error"
+                            )}
+                            onChange={handleChange}
+                            onBlur={blurHandler}
+                            onFocus={focusHandler}
+                        />
+                    </>
+                ) : (
+                    word.mean.value
+                )}
             </div>
             <div className="oneword__text">
-                {edit ? <input
-                    type="text"
-                    value={word.transcr}
-                    name="transcr"
-                    onChange={handleChange}
-                    className="oneword__input" />
-                    : word.transcr}
+                {edit ? (
+                    <>
+                        {word.transcr.error && word.transcr.isDirty && (
+                            <div className="oneword__text_error">{word.transcr.error}</div>
+                        )}
+                        <input
+                            type="text"
+                            value={word.transcr.value}
+                            name="transcr"
+                            className={cn(
+                                "oneword__input",
+                                word.transcr.isDirty && "oneword__input_error"
+                            )}
+                            onChange={handleChange}
+                            onBlur={blurHandler}
+                            onFocus={focusHandler}
+                        />
+                    </>
+                ) : (
+                    word.transcr.value
+                )}
             </div>
             <div className="oneword__text">
-                {edit ? <input
-                    type="text"
-                    value={word.transl}
-                    name="transl"
-                    onChange={handleChange}
-                    className="oneword__input" />
-                    : word.transl}
+                {edit ? (
+                    <>
+                        {word.transl.error && word.transl.isDirty && (
+                            <div className="oneword__text_error">{word.transl.error}</div>
+                        )}
+                        <input
+                            type="text"
+                            value={word.transl.value}
+                            name="transl"
+                            className={cn(
+                                "oneword__input",
+                                word.transl.isDirty && "oneword__input_error"
+                            )}
+                            onChange={handleChange}
+                            onBlur={blurHandler}
+                            onFocus={focusHandler}
+                        />
+                    </>
+                ) : (
+                    word.transl.value
+                )}
             </div>
             <div className="oneword__text">
-                {edit ? <input
-                    type="text"
-                    value={word.sub}
-                    name="sub"
-                    onChange={handleChange}
-                    className="oneword__input" />
-                    : word.sub}
+                {edit ? (
+                    <>
+                        {word.sub.error && word.sub.isDirty && (
+                            <div className="oneword__text_error">{word.sub.error}</div>
+                        )}
+                        <input
+                            type="text"
+                            value={word.sub.value}
+                            name="sub"
+                            className={cn(
+                                "oneword__input",
+                                word.sub.isDirty && "oneword__input_error"
+                            )}
+                            onChange={handleChange}
+                            onBlur={blurHandler}
+                            onFocus={focusHandler}
+                        />
+                    </>
+                ) : (
+                    word.sub.value
+                )}
             </div>
-            {edit ?
+            {edit ? (
                 <div className="oneword__btn">
                     <button className="oneword__btn_save" onClick={handleSave}></button>
-                    <button className="oneword__btn_cancel" onClick={handleCancelEdit}></button>
+                    <button
+                        className="oneword__btn_cancel"
+                        onClick={handleCancelEdit}
+                    ></button>
                 </div>
-                : <div className="oneword__btn">
+            ) : (
+                <div className="oneword__btn">
                     <button className="oneword__btn_edit" onClick={handleEdit}></button>
-                    <button className="oneword__btn_remove"></button>
-                </div>}
-        </div>
+                    <button
+                        className="oneword__btn_remove"
+                        onClick={handleRemove}
+                    ></button>
+                </div>
+            )}
+        </div >
     );
 }
 
