@@ -88,7 +88,13 @@ function Oneword(props) {
                 transl: "",
                 sub: "",
             });
+
             console.log(word);
+            console.log(`Значение: ${word.mean.value.trim()},
+            Транскрипция: ${word.transcr.value.trim()},
+            Перевод: ${word.transl.value.trim()},
+            Тема:${word.sub.value.trim()}`);
+
         } else {
             console.log("Some inputs not correct!!!");
         }
@@ -99,13 +105,14 @@ function Oneword(props) {
         let valid = true;
         for (let key in oldWord) {
             const name = key;
-            const value = word[name].value.trim();
+            const value = word[name].value;
             let curError = validationRules(name, value);
 
             setWord((word) => ({
                 ...word,
                 [name]: {
                     ...word[name],
+                    value: value.trim(),
                     error: curError !== "" ? curError : "",
                     isDirty: curError !== "" ? true : false,
                 },
@@ -119,10 +126,13 @@ function Oneword(props) {
     };
 
     // правила, по которым валидируются поля
-    const validationRules = (name, value) => {
+    const validationRules = (name, val) => {
         const regEn = /^[A-Z\s'-]+$/i;
         const regTr = /^[^А-ЯЁ]+$/i;
+        const regOpeningBracket = /^[[]/;
+        const regClosingBracket = /]$/;
         const regRus = /^[А-ЯЁ\s'-]+$/i;
+        let value = val.trim();
         let error = "";
 
         switch (name) {
@@ -143,6 +153,14 @@ function Oneword(props) {
             case "transcr":
                 if (value.length === 0) {
                     error = "Необходимо заполнить";
+                    break;
+                }
+                if (!regOpeningBracket.test(value)) {
+                    error = "Добавьте открывающую квадратную скобку в начало строки";
+                    break;
+                }
+                if (!regClosingBracket.test(value)) {
+                    error = "Добавьте закрывающую квадратную скобку в конец строки";
                     break;
                 }
                 if (!regTr.test(value)) {
@@ -218,13 +236,13 @@ function Oneword(props) {
     };
 
     /* useEffect(() => {
-        console.log(word);
-      }, [word]); */
+          console.log(word);
+        }, [word]); */
 
     /* useEffect(() => {
-          // condition goes here
-        console.log(edit);
-      }, [edit]); */
+            // condition goes here
+          console.log(edit);
+        }, [edit]); */
 
     return (
         <div className={cn(props.className, "oneword")} key={props.id}>
@@ -233,7 +251,7 @@ function Oneword(props) {
                 {edit ? (
                     <>
                         {word.mean.error && word.mean.isDirty && (
-                            <div className="oneword__text_error">{word.mean.error}</div>
+                            <p className="oneword__text_error">{word.mean.error}</p>
                         )}
                         <input
                             type="text"
@@ -256,7 +274,7 @@ function Oneword(props) {
                 {edit ? (
                     <>
                         {word.transcr.error && word.transcr.isDirty && (
-                            <div className="oneword__text_error">{word.transcr.error}</div>
+                            <p className="oneword__text_error">{word.transcr.error}</p>
                         )}
                         <input
                             type="text"
@@ -279,7 +297,7 @@ function Oneword(props) {
                 {edit ? (
                     <>
                         {word.transl.error && word.transl.isDirty && (
-                            <div className="oneword__text_error">{word.transl.error}</div>
+                            <p className="oneword__text_error">{word.transl.error}</p>
                         )}
                         <input
                             type="text"
@@ -302,7 +320,7 @@ function Oneword(props) {
                 {edit ? (
                     <>
                         {word.sub.error && word.sub.isDirty && (
-                            <div className="oneword__text_error">{word.sub.error}</div>
+                            <p className="oneword__text_error">{word.sub.error}</p>
                         )}
                         <input
                             type="text"
@@ -338,7 +356,7 @@ function Oneword(props) {
                     ></button>
                 </div>
             )}
-        </div >
+        </div>
     );
 }
 

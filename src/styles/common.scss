@@ -69,10 +69,15 @@ input {
     }
 }
 
+p {
+    font-family: $generalFont;
+}
+
 a,
 button,
 input[type="text"],
-div {
+div,
+p {
     -webkit-tap-highlight-color: transparent;
 
     -webkit-appearance: none;
