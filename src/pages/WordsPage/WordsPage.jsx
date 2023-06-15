@@ -5,7 +5,7 @@ import Oneword from "../../components/Oneword/Oneword.jsx";
 import { ArrayContext } from "../../js/ArrayContextProvider";
 
 function WordsPage() {
-    const { array, changeArray } = useContext(ArrayContext);
+    const { array } = useContext(ArrayContext);
 
     return (
         <div className="words container content">
@@ -20,14 +20,13 @@ function WordsPage() {
                 </div>
                 {array.map((el, index) => (
                     <Oneword
-                        key={el.id}
+                        key={el?.id}
                         num={index + 1}
-                        meaning={el.english}
-                        transcription={el.transcription}
-                        translation={el.russian}
-                        subject={el.tags}
+                        meaning={el?.english}
+                        transcription={el?.transcription}
+                        translation={el?.russian}
+                        subject={el?.tags}
                         className="words__parameters"
-                        changeArray={changeArray}
                     ></Oneword>
                 ))}
             </div>

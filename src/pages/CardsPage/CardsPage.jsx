@@ -79,11 +79,11 @@ function CardsPage({ index = 0 }) {
                     <Back className="cards__flip_icon" />
                 </button>
                 <Card
-                    key={word.id}
-                    tags={word.tags}
-                    english={word.english}
-                    transcription={word.transcription}
-                    russian={word.russian}
+                    key={word?.id}
+                    tags={word?.tags}
+                    english={word?.english}
+                    transcription={word?.transcription}
+                    russian={word?.russian}
                     translation={translation}
                     handleChange={handleChange}
                 />

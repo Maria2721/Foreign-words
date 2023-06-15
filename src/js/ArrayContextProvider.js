@@ -3,20 +3,10 @@ import React, { useState, createContext } from "react";
 const ArrayContext = createContext(null);
 
 function ArrayContextProvider(props) {
-  const [array, setArray] = useState([
-    {
-      id: "11346",
-      english: "street",
-      transcription: "[ stri:t ]",
-      russian: "улица",
-      tags: "город",
-    },
-  ]);
-
-  const changeArray = () => {};
+  const [array, setArray] = useState([]);
 
   return (
-    <ArrayContext.Provider value={{ array, changeArray }}>
+    <ArrayContext.Provider value={{ array, setArray }}>
       {props.children}
     </ArrayContext.Provider>
   );

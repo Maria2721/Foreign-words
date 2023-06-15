@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import * as cn from "classnames";
 import "./Oneword.scss";
+import { ArrayContext } from "../../js/ArrayContextProvider";
 
 function Oneword(props) {
+    const { setArray } = useContext(ArrayContext);
     const [edit, setEdit] = useState(false);
     const [word, setWord] = useState({
         mean: {
