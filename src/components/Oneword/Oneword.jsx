@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as cn from "classnames";
 import "./Oneword.scss";
 
@@ -78,7 +78,6 @@ function Oneword(props) {
     // после нажатия кнопки сохранить изменения происходит отправка в бд !!!
     const handleSave = () => {
         let curValid = validateWord();
-        console.log(`curValid after validateWord is ${curValid}`);
 
         if (curValid === true) {
             setEdit(false);
@@ -234,15 +233,6 @@ function Oneword(props) {
             },
         }));
     };
-
-    /* useEffect(() => {
-          console.log(word);
-        }, [word]); */
-
-    /* useEffect(() => {
-            // condition goes here
-          console.log(edit);
-        }, [edit]); */
 
     return (
         <div className={cn(props.className, "oneword")} key={props.id}>

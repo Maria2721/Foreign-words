@@ -73,7 +73,6 @@ function CardsPage({
     };
 
     useEffect(() => {
-        console.log(`new current index is ${curIndex}`);
         setWord(array[curIndex]);
         setTranslation(false);
         localStorage.setItem("cardIndex", curIndex);
