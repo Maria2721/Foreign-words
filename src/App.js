@@ -10,8 +10,6 @@ import WordsPage from "./pages/WordsPage/WordsPage.jsx";
 import CardsPage from "./pages/CardsPage/CardsPage.jsx";
 import NoMatchPage from "./pages/NoMatchPage/NoMatchPage.jsx";
 
-import Array from "./js/arraywords";
-
 const PageLayout = () => (
   <>
     <Header />
@@ -28,11 +26,8 @@ function App() {
       <Routes>
         <Route element={<PageLayout />}>
           <Route path="/" element={<MainPage />} />
-          <Route path="/words" element={<WordsPage array={Array} />} />
-          <Route
-            path="/game"
-            element={<CardsPage array={Array} index={Number(index)} />}
-          />
+          <Route path="/words" element={<WordsPage />} />
+          <Route path="/game" element={<CardsPage index={Number(index)} />} />
         </Route>
         <Route path="*" element={<NoMatchPage />} />
       </Routes>

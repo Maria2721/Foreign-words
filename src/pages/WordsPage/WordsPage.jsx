@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./WordsPage.scss";
 
 import Oneword from "../../components/Oneword/Oneword.jsx";
+import { ArrayContext } from "../../js/ArrayContextProvider";
 
-function WordsPage({ array }) {
+function WordsPage() {
+    const { array, changeArray } = useContext(ArrayContext);
+
     return (
         <div className="words container content">
             <div className="words__inner">
@@ -24,6 +27,7 @@ function WordsPage({ array }) {
                         translation={el.russian}
                         subject={el.tags}
                         className="words__parameters"
+                        changeArray={changeArray}
                     ></Oneword>
                 ))}
             </div>

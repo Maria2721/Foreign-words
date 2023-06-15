@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./CardsPage.scss";
 
 import Card from "../../components/Card/Card";
 import { ReactComponent as Back } from "../../assets/imgs/back.svg";
 import { ReactComponent as Forward } from "../../assets/imgs/forward.svg";
+import { ArrayContext } from "../../js/ArrayContextProvider";
 
-function CardsPage({
-    array = [
-        {
-            id: "11346",
-            english: "street",
-            transcription: "[ stri:t ]",
-            russian: "улица",
-            tags: "город",
-        },
-    ],
-    index = 0,
-}) {
+function CardsPage({ index = 0 }) {
+    const { array } = useContext(ArrayContext);
     const [curIndex, setCurIndex] = useState(index);
     const [word, setWord] = useState(array[index]);
     const [translation, setTranslation] = useState(false);
