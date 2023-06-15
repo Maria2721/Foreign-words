@@ -1,2 +1,3 @@
 # Foreign-words
-React application for learning foreign words by cards.
+
+In this branch for the working with state use Context.
