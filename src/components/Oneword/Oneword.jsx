@@ -131,7 +131,7 @@ function Oneword(props) {
         const regOpeningBracket = /^[[]/;
         const regClosingBracket = /]$/;
         const regRus = /^[А-ЯЁ\s'-]+$/i;
-        const regSub = /^[A-ZА-ЯЁ\s'-_]+$/i;
+        const regSub = /^[A-ZА-ЯЁ\s'_-]+$/i;
         let value = val.trim();
         let error = "";
 
