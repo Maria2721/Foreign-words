@@ -9,6 +9,7 @@
     .oneword__text {
         justify-content: flex-start !important;
         position: relative;
+        z-index: 1;
     }
     .oneword__btn {
         justify-content: space-evenly;
