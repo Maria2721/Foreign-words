@@ -127,10 +127,11 @@ function Oneword(props) {
     // правила, по которым валидируются поля
     const validationRules = (name, val) => {
         const regEn = /^[A-Z\s'-]+$/i;
-        const regTr = /^[^А-ЯЁ]+$/i;
+        const regTr = /^[^А-ЯЁ0-9]+$/i;
         const regOpeningBracket = /^[[]/;
         const regClosingBracket = /]$/;
         const regRus = /^[А-ЯЁ\s'-]+$/i;
+        const regSub = /^[A-ZА-ЯЁ\s'-_]+$/i;
         let value = val.trim();
         let error = "";
 
@@ -190,7 +191,7 @@ function Oneword(props) {
                     error = "Необходимо заполнить";
                     break;
                 }
-                if (!regRus.test(value)) {
+                if (!regSub.test(value)) {
                     error = "Недопустимые символы";
                     break;
                 }
