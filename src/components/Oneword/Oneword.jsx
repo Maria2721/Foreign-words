@@ -5,7 +5,7 @@ import { ArrayContext } from "../../js/ArrayContextProvider";
 
 function Oneword(props) {
     const { setArray } = useContext(ArrayContext);
-    const [edit, setEdit] = useState(false);
+    const [edit, setEdit] = useState(props.open_edit);
     const [word, setWord] = useState({
         mean: {
             value: props.meaning,
@@ -57,28 +57,38 @@ function Oneword(props) {
         });
     };
 
-    const handleRemove = () => {
-        console.log("Remove word!!!");
+    const handleRemove = (event) => {
+        let wordId = event.currentTarget.parentNode.parentNode.id;
+        setArray((current) =>
+            current.filter((obj) => {
+                return obj.id !== wordId;
+            })
+        );
     };
 
-    const handleCancelEdit = () => {
-        for (let key in oldWord) {
-            const name = key;
-            const value = oldWord[key];
-            setWord((word) => ({
-                ...word,
-                [name]: {
-                    ...word[name],
-                    value: value,
-                    isDirty: false,
-                },
-            }));
+    const handleCancelEdit = (event) => {
+        if (props.meaning === "" || props.transcription === "" || props.translation === "" || props.subject === "") {
+            event.currentTarget.disabled = true;
+        } else {
+            event.currentTarget.disabled = false;
+            for (let key in oldWord) {
+                const name = key;
+                const value = oldWord[key];
+                setWord((word) => ({
+                    ...word,
+                    [name]: {
+                        ...word[name],
+                        value: value,
+                        isDirty: false,
+                    },
+                }));
+            }
+            setEdit(false);
         }
-        setEdit(false);
     };
 
-    // после нажатия кнопки сохранить изменения происходит отправка в бд !!!
-    const handleSave = () => {
+    const handleSave = (event) => {
+        let wordId = event.currentTarget.parentNode.parentNode.id;
         let curValid = validateWord();
 
         if (curValid === true) {
@@ -90,12 +100,24 @@ function Oneword(props) {
                 sub: "",
             });
 
-            console.log(word);
-            console.log(`Значение: ${word.mean.value.trim()},
-            Транскрипция: ${word.transcr.value.trim()},
-            Перевод: ${word.transl.value.trim()},
-            Тема:${word.sub.value.trim()}`);
+            console.log(
+                `Значение: ${word.mean.value.trim()}, \n Транскрипция: ${word.transcr.value.trim()}, \n Перевод: ${word.transl.value.trim()}, \n Тема: ${word.sub.value.trim()}`
+            );
 
+            setArray((current) =>
+                current.map((obj) => {
+                    if (obj.id === wordId) {
+                        return {
+                            ...obj,
+                            english: word.mean.value.trim(),
+                            russian: word.transl.value.trim(),
+                            tags: word.sub.value.trim(),
+                            transcription: word.transcr.value.trim(),
+                        };
+                    }
+                    return obj;
+                })
+            );
         } else {
             console.log("Some inputs not correct!!!");
         }
@@ -238,7 +260,11 @@ function Oneword(props) {
     };
 
     return (
-        <div className={cn(props.className, "oneword")} key={props.id}>
+        <div
+            className={cn(props.className, "oneword")}
+            key={props.id}
+            id={props.id}
+        >
             <div>{props.num}</div>
             <div className="oneword__text">
                 {edit ? (
@@ -337,6 +363,7 @@ function Oneword(props) {
                     <button className="oneword__btn_save" onClick={handleSave}></button>
                     <button
                         className="oneword__btn_cancel"
+                        disabled={false}
                         onClick={handleCancelEdit}
                     ></button>
                 </div>
