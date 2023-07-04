@@ -4,6 +4,8 @@ import "./WordsPage.scss";
 import Oneword from "../../components/Oneword/Oneword.jsx";
 import { ArrayContext } from "../../js/ArrayContextProvider";
 
+import { ReactComponent as ToTop } from "../../assets/imgs/arrow_to_top.svg";
+
 function WordsPage() {
     const { array, setArray } = useContext(ArrayContext);
 
@@ -20,6 +22,21 @@ function WordsPage() {
             tags_json: "",
         };
         setArray(current => [...current, obj]);
+        scrollToBottom();
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth',
+        });
     };
 
     return (
@@ -47,6 +64,9 @@ function WordsPage() {
                     ></Oneword>
                 ))}
             </div>
+            <button className="words__scroll_btn" onClick={scrollToTop}>
+                <ToTop className="words__scroll_icon" />
+            </button>
         </div>
     );
 }

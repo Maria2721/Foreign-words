@@ -46,3 +46,25 @@
         background-color: #d39df2;
     }
 }
+
+.words__scroll_btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: inherit;
+
+    &:hover,
+    &:focus-visible {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+.words__scroll_icon {
+    height: 100%;
+    width: auto;
+}
